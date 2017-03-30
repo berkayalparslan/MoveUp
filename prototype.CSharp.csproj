@@ -72,12 +72,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FloorScript.cs" />
-    <Compile Include="Assets\ScoreScript.cs" />
     <Compile Include="Assets\_Scripts\ChangeColor.cs" />
+    <Compile Include="Assets\_Scripts\FloorScript.cs" />
+    <Compile Include="Assets\_Scripts\HorizontalMovement.cs" />
+    <Compile Include="Assets\_Scripts\InteractionScript.cs" />
     <Compile Include="Assets\_Scripts\MoveCamera.cs" />
-    <Compile Include="Assets\_Scripts\Movement.cs" />
+    <Compile Include="Assets\_Scripts\ScoreScript.cs" />
     <Compile Include="Assets\_Scripts\SpawnBalconies.cs" />
+    <Compile Include="Assets\_Scripts\VerticalMovement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

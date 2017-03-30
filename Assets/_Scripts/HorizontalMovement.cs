@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Movement : MonoBehaviour
+public class HorizontalMovement : MonoBehaviour
 {
     private Rigidbody rb;
     
     public bool isTouching;
-
+    public float movementDistance;
 
 	void Start ()
     {
         
         rb = GetComponent<Rigidbody>();
-        
+        movementDistance = 5.0f;
         isTouching = true;
 
     }
@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            rb.AddForce(0, 10, 0, ForceMode.Impulse);
+            rb.AddForce(0, movementDistance, 0, ForceMode.Impulse);
         }
 
     }
@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour
 
         if( col.gameObject.tag == "Balcony" )
         {
-            Debug.Log("touching the " + col.gameObject.name);
+            //Debug.Log("touching the " + col.gameObject.name);
             isTouching = true;
 
         }

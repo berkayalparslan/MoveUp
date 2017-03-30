@@ -20,6 +20,7 @@ public class ScoreScript : MonoBehaviour
 
 	void Update ()
     {
+
         floor.text = "Floor " + score.ToString();
 	
 	}

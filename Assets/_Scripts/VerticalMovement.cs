@@ -3,69 +3,102 @@ using System.Collections;
 
 public class VerticalMovement : MonoBehaviour
 {
-    public float movingSpeed;
+    private Rigidbody rb;
 
-    public float leftBorder, rightBorder;
-
-    public bool goingLeft;
+    public bool isTouching;
+    public float movementDistance;
+    public GameObject ballHolder;
 
 	void Start ()
     {
+
+        rb = GetComponent<Rigidbody>();
+
+        ballHolder = null;
+
+        movementDistance = 5.0f;
+
+        isTouching = false;
+
+    }
+
+
+    void Update()
+    {
+
+    }
+
+
+	void FixedUpdate ()
+    {
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetKeyDown(KeyCode.W) )
+        {
+            rb.AddForce(0, movementDistance, 0, ForceMode.Impulse);
+        }
+
+    }
+
+
+    void OnTriggerEnter(Collider col)
+    {
+        Debug.Log("touching the " + col.gameObject.name);
+
+        if (col.gameObject.tag == "Balcony")
+        {
+
+            isTouching = true;
+            
+
+        }
+
+        if(col.gameObject.tag=="Platform" )
+        {
+            ballHolder = col.transform.GetChild(0).gameObject;
+            ballHolder.GetComponent<Collider>().enabled = true;
+
+        }
+
+    }
+
+
+    //void OnTriggerStay(Collider col)
+    //{
+
+    //    if (col.gameObject.tag == "Platform")
+    //    {
+    //        ballHolder = col.gameObject.GetComponentInChildren<GameObject>();
+    //        ballHolder.GetComponent<Collider>().enabled = true;
+    //    }
+
+    //}
+
+
+    void OnTriggerExit(Collider col)
+    {
+
+        if( col.gameObject.tag == "Platform" )
+        {
+
+            //ballHolder = col.transform.GetChild(0).gameObject;
+            //ballHolder.GetComponent<Collider>().enabled = false;
+            //rb.WakeUp();
+
+            //Destroy(col.gameObject);
+            GameObject.Find("Balcons").SendMessage("DecreaseNum");
+            
+        }
+
+    }
+
+
+    public void Jump()
+    {
         
-
-        movingSpeed = 1.5f;
-
-        leftBorder = -0.365f;
-        rightBorder = 0.350f;
-
-        SetRandomSpawnPosition();
-
-        goingLeft = true;
-
-	}
-	
-
-	void Update ()
-    {
-
-        MoveInTheRange();
+        rb.AddForce(0, movementDistance, 0, ForceMode.Impulse);
+        Debug.Log("fucking jump u fucking cunt");
 
     }
-
-
-    void MoveInTheRange()
-    {
-
-        if (goingLeft)
-        {
-            transform.Translate(Vector3.left * movingSpeed* Time.deltaTime);
-        }
-
-        else
-        {
-            transform.Translate(Vector3.right * movingSpeed* Time.deltaTime);
-        }
-
-        if (transform.localPosition.x < leftBorder)
-        {
-            goingLeft = false;
-        }
-
-        if (transform.localPosition.x > rightBorder)
-        {
-            goingLeft = true;
-        }
-
-    }
-
-
-    void SetRandomSpawnPosition()
-    {
-        float posX = Random.Range(leftBorder, rightBorder);
-        transform.position = new Vector3(posX, transform.position.y);
-
-    }
-
 
 
 }

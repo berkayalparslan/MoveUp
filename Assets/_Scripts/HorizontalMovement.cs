@@ -3,72 +3,69 @@ using System.Collections;
 
 public class HorizontalMovement : MonoBehaviour
 {
-    private Rigidbody rb;
-    
-    public bool isTouching;
-    public float movementDistance;
+    public float movingSpeed;
+
+    public float leftBorder, rightBorder;
+
+    public bool goingLeft;
 
 	void Start ()
     {
         
-        rb = GetComponent<Rigidbody>();
-        movementDistance = 5.0f;
-        isTouching = true;
 
-    }
+        movingSpeed = 0;
 
-    void Update()
+        leftBorder = -0.365f;
+        rightBorder = 0.350f;
+
+        SetRandomSpawnPosition();
+
+        goingLeft = true;
+
+	}
+	
+
+	void Update ()
     {
 
-        
+        MoveInTheRange();
 
     }
 
 
-	void FixedUpdate ()
+    void MoveInTheRange()
     {
 
-        if( isTouching ==true )
+        if (goingLeft)
         {
-            rb.Sleep();
-            
+            transform.Translate(Vector3.left * movingSpeed* Time.deltaTime);
         }
-        if (Input.GetKeyDown(KeyCode.W))
+
+        else
         {
-            rb.AddForce(0, movementDistance, 0, ForceMode.Impulse);
+            transform.Translate(Vector3.right * movingSpeed* Time.deltaTime);
+        }
+
+        if (transform.localPosition.x < leftBorder)
+        {
+            goingLeft = false;
+        }
+
+        if (transform.localPosition.x > rightBorder)
+        {
+            goingLeft = true;
         }
 
     }
 
 
-    void OnTriggerEnter(Collider col)
+    void SetRandomSpawnPosition()
     {
-
-        if( col.gameObject.tag == "Balcony" )
-        {
-            //Debug.Log("touching the " + col.gameObject.name);
-            isTouching = true;
-
-        }
+        float posX = Random.Range(leftBorder, rightBorder);
+        transform.position = new Vector3(posX, transform.position.y);
 
     }
 
 
-
-    void OnTriggerExit(Collider col)
-    {
-
-        if( col.gameObject.tag == "Balcony" )
-        {
-
-            isTouching = false;
-            //rb.WakeUp();
-            Destroy(col.gameObject);
-            GameObject.Find("Balcons").SendMessage("DecreaseNum");          
-            
-        }
-
-
-    }
 
 }

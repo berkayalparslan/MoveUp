@@ -10,7 +10,8 @@ public class MoveCamera : MonoBehaviour
 
 	void Start ()
     {
-        movementHeight = 1.0f;
+        movementHeight = 2.0f;
+        
 	
 	}
 	

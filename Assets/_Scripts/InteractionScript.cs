@@ -3,41 +3,20 @@ using System.Collections;
 
 public class InteractionScript : MonoBehaviour
 {
+    public GameObject ballHolder;
 
-
+    Vector3 pos;
 
 	void Start ()
     {
+        pos = Vector3.zero;
+        //ballHolder = gameObject.GetComponentInChildren<GameObject>();
 	
 	}
 	
 
 	void Update ()
     {
-	
-	}
-
-
-    void OnTriggerEnter(Collider col)
-    {
-
-        if(col.gameObject.tag=="Ball")
-        {
-            GetComponent<Collider>().enabled = false;
-            Debug.Log("collider disabled");
-        }
-
-    }
-
-
-    void OnTriggerExit(Collider col)
-    {
-
-        if (col.gameObject.tag=="Ball")
-        {
-            GetComponent<Collider>().enabled = true;
-            Debug.Log("collider enabled");
-        }
 
     }
 

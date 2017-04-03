@@ -5,6 +5,8 @@ public class SpawnBalconies : MonoBehaviour
 {
     public GameObject balconyPrefab;
     public GameObject platformPrefab;
+    public GameObject ballHolderPrefab;
+
     public FloorScript floorScript;
 
     public int num=0;
@@ -12,6 +14,7 @@ public class SpawnBalconies : MonoBehaviour
 
     public float posY;
     public float platformPosY;
+    public float movementCounter;
 
 	void Start ()
     {
@@ -21,6 +24,7 @@ public class SpawnBalconies : MonoBehaviour
         maxNumber = 5;
         posY = 0;
         platformPosY = -0.25f;
+        movementCounter = 0;
 
         SetupBalconies();
 
@@ -46,9 +50,11 @@ public class SpawnBalconies : MonoBehaviour
             obj= (GameObject) Instantiate(balconyPrefab, pos, transform.rotation, gameObject.transform);
 
             AddMovingPlatforms(obj);
+            
 
             num++;
             posY++;
+
         }
 
     }
@@ -66,30 +72,55 @@ public class SpawnBalconies : MonoBehaviour
 
             num++;
             posY++;
-            
-            GameObject.FindGameObjectWithTag("MainCamera").SendMessage("Move");
+            movementCounter++;
+            if(movementCounter==2)
+            {
+                GameObject.FindGameObjectWithTag("MainCamera").SendMessage("Move");
+                movementCounter = 0;
+                
+            }
+
             floorScript.IncrementAllFloors();
+
 
         }
 
     }
     
 
-    void AddMovingPlatforms(GameObject obj)
+    void AddMovingPlatforms(GameObject gameobj)
     {
+        GameObject obj;
         Vector3 pos = new Vector3(0, platformPosY, transform.localPosition.z-0.75f);
 
-        Instantiate(platformPrefab, pos, transform.rotation, obj.transform);
+        obj=(GameObject) Instantiate(platformPrefab, pos, transform.rotation, gameobj.transform);
+
+        AddBallHolders(obj);
 
         platformPosY++;
 
     }
 
+    void AddBallHolders(GameObject obj)
+    {
+        GameObject ballHolder;
+        Vector3 pos = new Vector3( 0, platformPosY, transform.localPosition.z - 0.75f );
+
+        ballHolder = (GameObject) Instantiate(ballHolderPrefab, pos, transform.rotation, obj.transform);
+        if (num != 0)
+        {
+            ballHolder.GetComponent<Collider>().enabled = false;
+        }
+        
+
+    }
 
     void DecreaseNum()
     {
         num--;
     }
+
+
 
 
 }

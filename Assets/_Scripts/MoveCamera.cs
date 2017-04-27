@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class MoveCamera : MonoBehaviour
 {
     public GameObject bground;
@@ -10,7 +11,7 @@ public class MoveCamera : MonoBehaviour
 
 	void Start ()
     {
-        movementHeight = 2.0f;
+        movementHeight = 0.5f;
         
 	
 	}

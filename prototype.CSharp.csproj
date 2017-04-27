@@ -72,16 +72,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Scripts\BallMovement.cs" />
+    <Compile Include="Assets\_Scripts\BallVisibility.cs" />
+    <Compile Include="Assets\_Scripts\BlinkingScript.cs" />
     <Compile Include="Assets\_Scripts\ChangeColor.cs" />
-    <Compile Include="Assets\_Scripts\FloorScript.cs" />
+    <Compile Include="Assets\_Scripts\FloorIncrementScript.cs" />
+    <Compile Include="Assets\_Scripts\FloorTextScript.cs" />
     <Compile Include="Assets\_Scripts\GameSettings.cs" />
-    <Compile Include="Assets\_Scripts\HorizontalMovement.cs" />
-    <Compile Include="Assets\_Scripts\InteractionScript.cs" />
+    <Compile Include="Assets\_Scripts\GameoverTextScript.cs" />
+    <Compile Include="Assets\_Scripts\Menu.cs" />
+    <Compile Include="Assets\_Scripts\MoveBalcony.cs" />
     <Compile Include="Assets\_Scripts\MoveCamera.cs" />
-    <Compile Include="Assets\_Scripts\ScoreScript.cs" />
+    <Compile Include="Assets\_Scripts\PlatformMovement.cs" />
     <Compile Include="Assets\_Scripts\SetPosition.cs" />
     <Compile Include="Assets\_Scripts\SpawnBalconies.cs" />
-    <Compile Include="Assets\_Scripts\VerticalMovement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -5,13 +5,19 @@ public class ChangeColor : MonoBehaviour
 {
     public Renderer rend;
 
-    public int colorNumber;
+    public int colorNumber=0;
+
+    void Awake()
+    {
+        colorNumber++;
+
+    }
 
     void Start ()
     {
 
         rend = GetComponent<Renderer>();
-        colorNumber=Random.Range(0, 5);
+        //colorNumber=Random.Range(0, 5);
 
         switch (colorNumber)
         {

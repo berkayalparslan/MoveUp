@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnBalconies : MonoBehaviour
 {
     public GameObject balconyPrefab;
     public GameObject platformPrefab;
-    public GameObject ballHolderPrefab;
+    public GameObject triggerPrefab;
 
-    public FloorScript floorScript;
+    public FloorIncrementScript floorScript;
+
+    public List<GameObject> balconies;
+
 
     public int num=0;
     public int maxNumber;
@@ -15,16 +19,22 @@ public class SpawnBalconies : MonoBehaviour
     public float posY;
     public float platformPosY;
     public float movementCounter;
+    public float movingSpeed;
 
-	void Start ()
+    public float incrementValue = 0.25f;
+
+
+    void Start ()
     {
+        balconies = new List<GameObject>();
 
         num = GameObject.FindGameObjectsWithTag("Balcony").Length;
 
-        maxNumber = 5;
+        maxNumber = 6;
         posY = 0;
         platformPosY = -0.25f;
         movementCounter = 0;
+        movingSpeed = 0.0f;
 
         SetupBalconies();
 
@@ -33,7 +43,7 @@ public class SpawnBalconies : MonoBehaviour
 
 	void Update ()
     {
-        AddBalconies();
+        //AddBalconies();
 
 	}
 
@@ -46,71 +56,54 @@ public class SpawnBalconies : MonoBehaviour
             GameObject obj;
 
 
-            Vector3 pos = new Vector3(transform.position.x, posY, transform.position.z);
+            Vector3 pos = new Vector3(transform.position.x, posY,transform.position.z+1);
             obj= (GameObject) Instantiate(balconyPrefab, pos, transform.rotation, gameObject.transform);
 
-            AddMovingPlatforms(obj);
-            
+            balconies.Add(obj);
+
+            CreateMovingPlatforms(obj);
 
             num++;
             posY++;
-
-        }
-
-    }
-
-
-    void AddBalconies()
-    {
-
-        while (num < maxNumber)
-        {
-            GameObject obj;
-            Vector3 pos = new Vector3(transform.position.x, posY, transform.position.z);
-            obj= (GameObject) Instantiate(balconyPrefab, pos, transform.rotation, gameObject.transform);
-            AddMovingPlatforms(obj);
-
-            num++;
-            posY++;
-            movementCounter++;
-            if(movementCounter==2)
-            {
-                GameObject.FindGameObjectWithTag("MainCamera").SendMessage("Move");
-                movementCounter = 0;
-                
-            }
-
-            floorScript.IncrementAllFloors();
-
 
         }
 
     }
     
 
-    void AddMovingPlatforms(GameObject gameobj)
+    void CreateMovingPlatforms(GameObject gameobj)
     {
         GameObject obj;
-        Vector3 pos = new Vector3(0, platformPosY, transform.localPosition.z-0.75f);
+        Vector2 pos = new Vector2(0, platformPosY);
 
         obj=(GameObject) Instantiate(platformPrefab, pos, transform.rotation, gameobj.transform);
 
-        AddBallHolders(obj);
+        if (num==0)
+        {
+            obj.GetComponent<PlatformMovement>().movingSpeed = movingSpeed;
+        }
+
+        else
+        {
+            obj.GetComponent<PlatformMovement>().movingSpeed = movingSpeed;
+            obj.GetComponent<Collider2D>().enabled = false;
+        }
+
+        
+        CreateTriggers(obj);
 
         platformPosY++;
 
+        IncreaseMovSpeed();
+
     }
 
-    void AddBallHolders(GameObject obj)
+    void CreateTriggers(GameObject obj)
     {
-        GameObject ballHolder;
-        Vector3 pos = new Vector3( 0, platformPosY, transform.localPosition.z - 0.75f );
+        GameObject triggerObj;
+        Vector2 pos = new Vector2( 0, platformPosY);
 
-        ballHolder = (GameObject) Instantiate(ballHolderPrefab, pos, transform.rotation, obj.transform);
-        if (num != 0)
-        {
-            ballHolder.GetComponent<Collider>().enabled = false;
-        }
+        triggerObj = (GameObject) Instantiate(triggerPrefab, pos, transform.rotation, obj.transform);
         
 
     }
@@ -118,6 +111,12 @@ public class SpawnBalconies : MonoBehaviour
     void DecreaseNum()
     {
         num--;
+    }
+
+
+    void IncreaseMovSpeed()
+    {
+        movingSpeed += incrementValue;
     }
 
 

@@ -4,32 +4,57 @@ using System.Collections;
 
 public class MoveCamera : MonoBehaviour
 {
-    public GameObject bground;
 
-    public float movementHeight;
+    public GameObject ball;
+    public GameStatus gameStatus;
+
+    public float offset;
+    public float lastPosY;
 
 
 	void Start ()
     {
-        movementHeight = 0.5f;
-        
+
+        offset = 2.5f;
 	
 	}
 	
 
 	void Update ()
     {
-	
-	}
+
+        //if(ball.GetComponent<Rigidbody2D>().velocity.y>=0)
+        //{
+            //Move();
+        //}
+
+        if(gameStatus.gameOver==false && ball.GetComponent<Rigidbody2D>().velocity.y >= 0)
+        {
+            Move();
+        }
+        
+        //if(transform.rotation.x> maxRotaX)
+        //{
+        //    gameStatus.GameOver(true);
+        //}
+        //else
+        //{
+        //    Rotate();
+        //}
+
+    }
 
 
     void Move()
     {
+        
+        transform.position = new Vector3(
+            transform.position.x, 
+            ball.transform.position.y+offset, 
+            transform.position.z
+            );
 
-        transform.position = new Vector3(transform.position.x, transform.position.y + movementHeight, transform.position.z);
-        bground.transform.position = new Vector3(bground.transform.position.x, 
-            bground.transform.position.y + movementHeight, 
-            bground.transform.position.z);
+        lastPosY = transform.position.y;
 
     }
 

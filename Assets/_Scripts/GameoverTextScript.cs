@@ -8,27 +8,28 @@ public class GameoverTextScript : MonoBehaviour
 
     public Text gameoverText;
 
+    public GameObject gameOverMenu;
 
-    public FloorIncrementScript floorScript;
-
+    public ScoreScript scoreScript;
 
 	void Start ()
     {
-
+        gameOverMenu.SetActive(false);
         gameoverText = GetComponent<Text>();
         gameObject.SetActive(false);
 	
 	}
 
 
-    public void ShowText()
+    public void ShowMenu()
     {
-
-        string score = floorScript.recentFloor.ToString();
-        gameoverText.text = "Your score\n  "+ score;
+        gameoverText.text = "Your score\n  "+ scoreScript.scoreText.text;
+        gameOverMenu.gameObject.SetActive(true);
         gameObject.SetActive(true);
 
     }
+
+
 
 
 }

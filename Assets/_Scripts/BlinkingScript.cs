@@ -7,11 +7,10 @@ using UnityEngine.EventSystems;
 public class BlinkingScript : MonoBehaviour
 {
 
-    public GameSettings gameSettings;
+    public GameStatus gameStatus;
     public GameoverTextScript gameoverScript;
 
     public Image image;
-
 
     public float alphaValue;
 
@@ -93,8 +92,8 @@ public class BlinkingScript : MonoBehaviour
             {
 
                 StopBlinking();
-                gameoverScript.ShowText();
-                gameSettings.Pause();
+                gameoverScript.ShowMenu();
+                //gameSettings.Pause();
                 
 
             }
@@ -124,7 +123,7 @@ public class BlinkingScript : MonoBehaviour
     {
 
         alphaValue-=Time.deltaTime;
-        Debug.Log(alphaValue);
+        //Debug.Log(alphaValue);
         
     }
 
@@ -132,7 +131,7 @@ public class BlinkingScript : MonoBehaviour
     void IncreaseAlpha()
     {
         alphaValue+=Time.deltaTime;
-        Debug.Log(alphaValue);
+        //Debug.Log(alphaValue);
         counter+=Time.deltaTime;
 
     }

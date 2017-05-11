@@ -12,13 +12,15 @@ public class Menu : MonoBehaviour
     public Image mainMenu;
     public Image pauseMenu;
 
-    private GameSettings settings;
+    public Text scoreText;
+
+    private GameStatus gameStatus;
 
 
     void Start ()
     {
 
-        settings = GetComponent<GameSettings>();
+        gameStatus = GetComponent<GameStatus>();
         Time.timeScale = 0;
 
     }
@@ -34,8 +36,8 @@ public class Menu : MonoBehaviour
 
         mainMenu.gameObject.SetActive(false);
         pauseButton.gameObject.SetActive(true);
-
-        settings.Continue();
+        scoreText.gameObject.SetActive(true);
+        gameStatus.Continue();
 
     }
     
@@ -43,10 +45,10 @@ public class Menu : MonoBehaviour
     public void PauseOrContinue()
     {
 
-        if(settings.gamePaused == false)
+        if(gameStatus.gamePaused == false)
         {
 
-            settings.Pause();
+            gameStatus.Pause();
             pauseMenu.gameObject.SetActive(true);
 
         }
@@ -55,7 +57,7 @@ public class Menu : MonoBehaviour
         {
 
             pauseMenu.gameObject.SetActive(false);
-            settings.Continue();
+            gameStatus.Continue();
 
         }
 
@@ -65,7 +67,7 @@ public class Menu : MonoBehaviour
     public void RestartTheGame()
     {
         pauseMenu.gameObject.SetActive(false);
-        settings.Restart();
+        gameStatus.Restart();
     }
 
 

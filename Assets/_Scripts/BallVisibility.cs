@@ -7,7 +7,7 @@ public class BallVisibility: MonoBehaviour
     private Camera cam;
 
     public GameObject ball;
-    public GameSettings gameSettings;
+    public GameStatus gameStatus;
 
     public Vector3 pos;
 
@@ -22,14 +22,17 @@ public class BallVisibility: MonoBehaviour
 	void Update ()
     {
 
-        pos =cam.WorldToScreenPoint(ball.transform.position);
-
-        if(pos.y<0)
+        if (pos.y < 0)
         {
-            gameSettings.GameOver(true);
+            gameStatus.GameOver(true);
+            ball.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             Debug.Log("gg wp gameover lol");
 
         }
+
+        pos =cam.WorldToScreenPoint(ball.transform.position);
+
+        
 	
 
 	}

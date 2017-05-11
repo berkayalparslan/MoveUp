@@ -4,7 +4,7 @@ using System.Collections;
 public class PlatformMovement : MonoBehaviour
 {
 
-    public GameSettings gameSettings;
+    public GameStatus gameStatus;
 
     public float movingSpeed;
     public float leftBorder, rightBorder;
@@ -21,13 +21,14 @@ public class PlatformMovement : MonoBehaviour
 
 	void Start ()
     {
-        gameSettings = GameObject.Find("GameSettings").GetComponent<GameSettings>();
-        leftBorder = -0.213f;
-        rightBorder = 0.220f;
+        gameStatus = GameObject.Find("GameStatus").GetComponent<GameStatus>();
+        leftBorder = -0.325f;
+        rightBorder = 0.325f;
 
+        SetRandomBeginDirection();
         SetRandomSpawnPosition();
 
-        goingLeft = true;
+        
 
 	}
 	
@@ -35,7 +36,7 @@ public class PlatformMovement : MonoBehaviour
 	void Update ()
     {
 
-        if(gameSettings.gameOver==false)
+        if(gameStatus.gameOver==false)
         {
             MoveInTheRange();
         }
@@ -73,6 +74,22 @@ public class PlatformMovement : MonoBehaviour
     {
         float posX = Random.Range(leftBorder, rightBorder);
         transform.position = new Vector3(posX, transform.position.y);
+
+    }
+
+
+    void SetRandomBeginDirection()
+    {
+
+        if ( Random.Range(0,1)==0 )
+        {
+            goingLeft = true;
+        }
+
+        else
+        {
+            goingLeft = false;
+        }
 
     }
 

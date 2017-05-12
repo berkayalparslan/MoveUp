@@ -14,6 +14,7 @@ public class BallVisibility: MonoBehaviour
 
 	void Start ()
     {
+
         cam = GetComponent<Camera>();
 	
 	}

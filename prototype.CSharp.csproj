@@ -94,6 +94,7 @@
     <Compile Include="Assets\_Scripts\GameoverTextScript.cs" />
     <Compile Include="Assets\_Scripts\Menu.cs" />
     <Compile Include="Assets\_Scripts\MoveCamera.cs" />
+    <Compile Include="Assets\_Scripts\OptionsMenu.cs" />
     <Compile Include="Assets\_Scripts\PlatformMovement.cs" />
     <Compile Include="Assets\_Scripts\ScoreScript.cs" />
     <Compile Include="Assets\_Scripts\SetPosition.cs" />

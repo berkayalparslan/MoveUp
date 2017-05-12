@@ -23,7 +23,7 @@ public class GameoverTextScript : MonoBehaviour
 
     public void ShowMenu()
     {
-        gameoverText.text = "Your score\n  "+ scoreScript.scoreText.text;
+        gameoverText.text = "Your score\n \t  "+ scoreScript.scoreText.text;
         gameOverMenu.gameObject.SetActive(true);
         gameObject.SetActive(true);
 

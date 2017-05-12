@@ -50,9 +50,9 @@ public class GameStatus : MonoBehaviour
 
         if(isOver==true)
         {
+
             gameOver = true;
             blinkingScript.StartBlinking();
-            
             
         }
 

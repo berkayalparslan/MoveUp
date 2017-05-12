@@ -4,17 +4,22 @@ using System.Collections;
 
 public class MoveCamera : MonoBehaviour
 {
+    private BallVisibility ballVisib;
 
     public GameObject ball;
     public GameStatus gameStatus;
 
+    private Rigidbody2D ballRB;
+
     public float offset;
     public float lastPosY;
+    public float movementLimit;
 
 
 	void Start ()
     {
-
+        ballVisib = GetComponent<BallVisibility>();
+        ballRB = ball.GetComponent<Rigidbody2D>();
         offset = 2.5f;
 	
 	}
@@ -28,7 +33,7 @@ public class MoveCamera : MonoBehaviour
             //Move();
         //}
 
-        if(gameStatus.gameOver==false && ball.GetComponent<Rigidbody2D>().velocity.y >= 0)
+        if( gameStatus.gameOver==false && ballRB.velocity.y >= -2.5f  )
         {
             Move();
         }
@@ -47,12 +52,17 @@ public class MoveCamera : MonoBehaviour
 
     void Move()
     {
+
         
-        transform.position = new Vector3(
-            transform.position.x, 
-            ball.transform.position.y+offset, 
+        Vector3 pos= new Vector3(
+            transform.position.x,
+            ball.transform.position.y + offset,
             transform.position.z
             );
+        
+        transform.position = pos;
+
+
 
         lastPosY = transform.position.y;
 

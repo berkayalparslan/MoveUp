@@ -68,8 +68,6 @@ public class BallMovement : MonoBehaviour
         //    //ballHolder.transform.GetComponent<Collider2D>().enabled = true;
         //    transform.SetParent(col.transform);
         //}
-        
-
 
     }
 
@@ -99,10 +97,8 @@ public class BallMovement : MonoBehaviour
 
         if( col.gameObject.tag == "Platform" )
         {
-            //GameObject.FindGameObjectWithTag("MainCamera").GetComponent<MoveCamera>().Invoke("Move", invokeTimer);
 
             Debug.Log("leaving");
-            //col.transform.parent.GetComponent<MoveFloors>().Invoke("MoveUp", invokeTimer);
 
             TriggerToCollider(col.GetComponent<BoxCollider2D>());
             
@@ -121,7 +117,6 @@ public class BallMovement : MonoBehaviour
 
             scoreScript.IncreaseScore();
 
-
             transform.SetParent(col.transform);
 
             if(floorVisibility.isCalled==true)
@@ -139,7 +134,7 @@ public class BallMovement : MonoBehaviour
 
         if (col.gameObject.tag == "Platform")
         {
-            
+            IdleSpeed(col.transform.GetComponent<PlatformMovement>());
         }
             
     }
@@ -224,6 +219,13 @@ public class BallMovement : MonoBehaviour
         col.offset = new Vector2(0, 0.15f);
         col.size = new Vector2(1, 0.16f);
         Debug.Log("collider to trigger");
+    }
+
+
+
+    void IdleSpeed(PlatformMovement platformMov)
+    {
+        platformMov.movingSpeed += 0.001f;
     }
 
 

@@ -8,6 +8,9 @@ public class Menu : MonoBehaviour
 
     public Button startButton;
     public Button pauseButton;
+    public Button optionsButton;
+    public Button highScoresButton;
+    public Button creditsButton;
 
     public Image mainMenu;
     public Image pauseMenu;
@@ -35,8 +38,13 @@ public class Menu : MonoBehaviour
     {
 
         mainMenu.gameObject.SetActive(false);
+        optionsButton.gameObject.SetActive(false);
+        highScoresButton.gameObject.SetActive(false);
+        creditsButton.gameObject.SetActive(false);
+
         pauseButton.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(true);
+
         gameStatus.Continue();
 
     }
@@ -69,6 +77,9 @@ public class Menu : MonoBehaviour
         pauseMenu.gameObject.SetActive(false);
         gameStatus.Restart();
     }
+
+
+
 
 
 }

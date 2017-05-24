@@ -8,6 +8,7 @@ public class PlatformMovement : MonoBehaviour
 
     public float movingSpeed;
     public float leftBorder, rightBorder;
+    public float speedTimer;
 
     public bool goingLeft;
 
@@ -15,7 +16,7 @@ public class PlatformMovement : MonoBehaviour
     void Awake()
     {
         movingSpeed = 0.0f;
-
+        speedTimer = 0.0f;
     }
 
 
@@ -36,12 +37,43 @@ public class PlatformMovement : MonoBehaviour
 	void Update ()
     {
 
-        if(gameStatus.gameOver==false)
+        if(gameStatus.gameOver==false && gameStatus.GameStarted==true)
         {
             MoveInTheRange();
         }
+        
+        //if(GetComponent<Collider2D>().isTrigger==true)
+        //{
+        //    ChangeSpeed();
+            
+        //}
+        //else
+        //{
+        //    movingSpeed = 0.25f;
+        //}
 
     }
+
+
+    //void ChangeSpeed()
+    //{
+
+    //    speedTimer += Time.deltaTime;
+
+    //    if(speedTimer%2 == 0)
+    //    {
+    //        movingSpeed += 0.1f;
+    //    }
+    //    else
+    //    {
+    //        if( Random.Range(0,2) ==1 )
+    //        {
+    //            movingSpeed += Random.Range(-0.1f, 0.1f);
+    //        }
+                
+    //    }
+
+    //}
 
 
     void MoveInTheRange()

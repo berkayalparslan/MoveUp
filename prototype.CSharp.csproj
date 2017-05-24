@@ -82,12 +82,21 @@
     <Reference Include="UnityEditor.iOS.Extensions.Common">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>Assets\Plugins\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets\Plugins\System.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Scripts\BallMovement.cs" />
     <Compile Include="Assets\_Scripts\BallVisibility.cs" />
     <Compile Include="Assets\_Scripts\BlinkingScript.cs" />
     <Compile Include="Assets\_Scripts\ChangeColor.cs" />
+    <Compile Include="Assets\_Scripts\CheckHighScores.cs" />
+    <Compile Include="Assets\_Scripts\CountdownScript.cs" />
+    <Compile Include="Assets\_Scripts\DisplayHighScores.cs" />
     <Compile Include="Assets\_Scripts\FloorVisibility.cs" />
     <Compile Include="Assets\_Scripts\FollowTheBall.cs" />
     <Compile Include="Assets\_Scripts\GameStatus.cs" />
@@ -99,6 +108,7 @@
     <Compile Include="Assets\_Scripts\ScoreScript.cs" />
     <Compile Include="Assets\_Scripts\SetPosition.cs" />
     <Compile Include="Assets\_Scripts\SpawnFloors.cs" />
+    <Compile Include="Assets\_Scripts\dbAccess.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

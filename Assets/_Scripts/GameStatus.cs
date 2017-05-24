@@ -10,7 +10,9 @@ public class GameStatus : MonoBehaviour
     public BlinkingScript blinkingScript;
     public SpawnFloors spawnFloors;
     public PlatformMovement platformMovement;
+    public GameoverTextScript gameoverTextScript;
 
+    public bool gameStarted;
     public bool gameOver;
     public bool gamePaused;
 
@@ -18,16 +20,37 @@ public class GameStatus : MonoBehaviour
     void Awake ()
     {
         //ball.transform.SetParent(spawnBalconies.balconies[0].transform.GetChild(0).transform);
+        Time.timeScale = 0.0f;
         
         gamePaused = true;
         gameOver = false;
     }
 
 
+    void Start()
+    {
+        gameStarted = false;
+    }
+
+
+    void Update()
+    {
+        
+    }
+
+    public bool GameStarted
+    {
+        get
+        {
+            return gameStarted;
+        }
+    }
+
+
     public void Restart()
     {
         SceneManager.LoadScene("Game");
-        Continue();
+        
     }
 
 
@@ -38,10 +61,21 @@ public class GameStatus : MonoBehaviour
     }
 
 
+    public void _Start()
+    {
+
+        gameStarted = true;
+        gamePaused = false;
+        Time.timeScale = 1.0f;
+
+    }
+
+
     public void Continue()
     {
-        Time.timeScale = 1.0f;
         gamePaused = false;
+        Time.timeScale = 1.0f;
+        
     }
 
 
@@ -53,6 +87,7 @@ public class GameStatus : MonoBehaviour
 
             gameOver = true;
             blinkingScript.StartBlinking();
+            //gameoverTextScript.ShowMenu();
             
         }
 
@@ -62,7 +97,6 @@ public class GameStatus : MonoBehaviour
         }
 
     }
-
 
     
 

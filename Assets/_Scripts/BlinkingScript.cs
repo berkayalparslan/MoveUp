@@ -9,6 +9,7 @@ public class BlinkingScript : MonoBehaviour
 
     public GameStatus gameStatus;
     public GameoverTextScript gameoverScript;
+    public GameObject gameOverMenu;
 
     public Image image;
 
@@ -92,7 +93,9 @@ public class BlinkingScript : MonoBehaviour
             {
 
                 StopBlinking();
-                gameoverScript.ShowMenu();
+                gameOverMenu.gameObject.SetActive(true);
+                
+                
                 //gameSettings.Pause();
                 
 

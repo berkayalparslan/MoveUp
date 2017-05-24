@@ -18,34 +18,52 @@ public class Menu : MonoBehaviour
     public Text scoreText;
 
     private GameStatus gameStatus;
+    public CountdownScript countdownScript;
 
 
     void Start ()
     {
 
-        gameStatus = GetComponent<GameStatus>();
-        Time.timeScale = 0;
+        gameStatus = GetComponent<GameStatus>();    
 
     }
 
 
     void Update ()
     {
+        //Debug.Log(Time.timeScale);
 	
 	}
 
     public void StartTheGame()
     {
-
+        // UI items to disappear
         mainMenu.gameObject.SetActive(false);
         optionsButton.gameObject.SetActive(false);
         highScoresButton.gameObject.SetActive(false);
         creditsButton.gameObject.SetActive(false);
 
+        Time.timeScale = 1.0f;
+        //Ingame UI items to appear
+        countdownScript.gameObject.SetActive(true);
         pauseButton.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(true);
 
-        gameStatus.Continue();
+        countdownScript.Triggered = true;
+        
+
+    }
+
+
+    public void StartTheGame(bool triggered)
+    {
+
+        if(triggered==false)
+        {
+
+            gameStatus._Start();
+
+        }
 
     }
     
@@ -53,7 +71,7 @@ public class Menu : MonoBehaviour
     public void PauseOrContinue()
     {
 
-        if(gameStatus.gamePaused == false)
+        if(gameStatus.gamePaused == false && gameStatus.gameOver==false )
         {
 
             gameStatus.Pause();
@@ -79,7 +97,20 @@ public class Menu : MonoBehaviour
     }
 
 
+    public void ToggleMenu(GameObject obj)
+    {
 
+        if (obj.activeSelf == false)
+        {
+            obj.SetActive(true);
+        }
+
+        else
+        {
+            obj.SetActive(false);
+        }
+
+    }
 
 
 }

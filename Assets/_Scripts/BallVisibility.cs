@@ -28,7 +28,7 @@ public class BallVisibility: MonoBehaviour
 
             gameStatus.GameOver(true);
             ball.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
-            Debug.Log("gg wp gameover lol");            
+            //Debug.Log("gg wp gameover lol");            
 
         }
 

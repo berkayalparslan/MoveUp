@@ -28,10 +28,10 @@ public class GameoverTextScript : MonoBehaviour
     {
 
         gameoverText.text = "Your score\n \t  " + scoreScript.scoreText.text;
-        //gameOverMenu.gameObject.SetActive(true);
 
         gameObject.SetActive(true);
 
+        //DB
         checkScoreScript.CheckScore(scoreScript.scoreText.text);
 
     }

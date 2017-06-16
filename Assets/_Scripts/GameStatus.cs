@@ -24,6 +24,11 @@ public class GameStatus : MonoBehaviour
         
         gamePaused = true;
         gameOver = false;
+
+        Debug.Log(" streaming assets path is : "+Application.streamingAssetsPath);
+        Debug.Log(" persistent data path is : " + Application.persistentDataPath);
+        Debug.Log(" application path is : " + Application.dataPath);
+
     }
 
 

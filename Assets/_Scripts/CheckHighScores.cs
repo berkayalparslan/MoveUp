@@ -7,25 +7,13 @@ using UnityEngine.EventSystems;
 
 public class CheckHighScores : MonoBehaviour
 {
-
+    //DB
     public dbAccess dbScript;
-
-    public GameObject addScoreWindow;
-
-    public InputField inputField;
-    public Button confirmButton;
-    public Text warningText;
-
-    public string usrName;
-
-    public bool isNull;
 
     public int score;
 	
 	void Start ()
     {
-
-        isNull = false;
         score = 0;
 
 	}
@@ -36,82 +24,15 @@ public class CheckHighScores : MonoBehaviour
 
         int score = System.Convert.ToInt32(value);
 
-        //for (int i = 0; i < 5; i++)
-        //{
-
-        //    if(score > dbScript.score[i] )
-        //    {
-
-        //        this.score = score;
-        //        addScoreWindow.SetActive(true);
-
-        //        break;
-
-        //    }
-        //}
-
-        if(score>dbScript.score[4])
+        //DB
+        if (score > dbScript.score)
         {
-            this.score = score;
-            addScoreWindow.SetActive(true);
+            dbScript.AddRecord(score);
         }
-        
 
     }
 
-
-    private void ShowInputImage()
-    {
-        addScoreWindow.SetActive(true);
-    }
-
-
-    public void ConfirmName()
-    {
-        IsInputFieldEmpty();
-
-        if ( isNull == true )
-        {
-            warningText.gameObject.SetActive(true);
-        }
-
-        else
-        {
-
-            usrName = inputField.text;
-
-            dbScript.AddRecord(usrName, score);
-            addScoreWindow.SetActive(false);
-
-            Debug.Log("button should be closed tbh");                       
-            
-        }
-        
-    }
-
-
-    public void IsInputFieldEmpty()
-    {
-
-        if(inputField.text=="")
-        {
-            //confirmButton.interactable = false;
-            isNull = true;
-            Debug.Log("inputfield cant be empty !");
-            
-        }
-
-        else
-        {
-            //confirmButton.interactable = true;
-            isNull = false;
-            Debug.Log("inputfield is ready to go");
-            
-            
-        }
-        //ConfirmName();
-
-    }
+    
 
 
 }

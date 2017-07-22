@@ -49,14 +49,34 @@ public class BallMovement : MonoBehaviour
 	void FixedUpdate ()
     {
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && rb.velocity.normalized.y == 0 && gameStatus.gameOver==false || Input.GetKeyDown(KeyCode.W) )
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began 
+            && rb.velocity.normalized.y == 0 && gameStatus.gameOver==false && gameStatus.gameStarted==true 
+            || Input.GetKeyDown(KeyCode.W) && gameStatus.gameStarted == true && rb.velocity.normalized.y == 0 )
         {
-            rb.AddForce(new Vector2(0, movementDistance), ForceMode2D.Impulse);
-            
+
+            if( IsTouchingPauseButton() == false )
+            {
+
+                rb.AddForce(new Vector2(0, movementDistance), ForceMode2D.Impulse);
+
+            }
+
         }
 
     }
 
+
+    bool IsTouchingPauseButton()
+    {
+        if(Input.GetTouch(0).position.x > Screen.width - 100 && Input.GetTouch(0).position.y > Screen.height -100 )
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {

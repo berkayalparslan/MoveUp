@@ -16,14 +16,17 @@ public class Menu : MonoBehaviour
     public Image pauseMenu;
 
     public Text scoreText;
+    public Text highScoreText;
 
     private GameStatus gameStatus;
     public CountdownScript countdownScript;
+    public ScriptXML xmlScript;
 
 
     void Start ()
     {
-
+        //xmlScript.CheckRecord();
+        highScoreText.text = xmlScript.score.ToString();
         gameStatus = GetComponent<GameStatus>();    
 
     }
@@ -48,6 +51,7 @@ public class Menu : MonoBehaviour
         countdownScript.gameObject.SetActive(true);
         pauseButton.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(true);
+        highScoreText.gameObject.SetActive(true);
 
         countdownScript.Triggered = true;
         
@@ -71,7 +75,7 @@ public class Menu : MonoBehaviour
     public void PauseOrContinue()
     {
 
-        if(gameStatus.gamePaused == false && gameStatus.gameOver==false )
+        if(gameStatus.gamePaused == false && gameStatus.gameOver==false && gameStatus.gameStarted == true )
         {
 
             gameStatus.Pause();
@@ -81,9 +85,9 @@ public class Menu : MonoBehaviour
 
         else
         {
-
-            pauseMenu.gameObject.SetActive(false);
             gameStatus.Continue();
+            pauseMenu.gameObject.SetActive(false);
+            
 
         }
 
@@ -92,8 +96,10 @@ public class Menu : MonoBehaviour
 
     public void RestartTheGame()
     {
-        pauseMenu.gameObject.SetActive(false);
+        Debug.Log("did it restart ?");
         gameStatus.Restart();
+        pauseMenu.gameObject.SetActive(false);
+        
     }
 
 

@@ -11,11 +11,11 @@ public class GameoverTextScript : MonoBehaviour
     public GameObject gameOverMenu;
 
     public ScoreScript scoreScript;
-    public CheckHighScores checkScoreScript;
+    public CheckHighScore checkScoreScript;
 
     public bool isVisible;
 
-	void Start ()
+	private void Start ()
     {
         gameOverMenu.SetActive(false);
         gameObject.SetActive(false);
@@ -24,14 +24,14 @@ public class GameoverTextScript : MonoBehaviour
 	}
 
 
-    void OnEnable()
+    private void OnEnable()
     {
 
         gameoverText.text = "Your score\n \t  " + scoreScript.scoreText.text;
 
         gameObject.SetActive(true);
 
-        //DB
+        //XML
         checkScoreScript.CheckScore(scoreScript.scoreText.text);
 
     }

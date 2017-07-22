@@ -32,16 +32,11 @@ public class GameStatus : MonoBehaviour
     }
 
 
-    void Start()
+    private void Start()
     {
         gameStarted = false;
     }
 
-
-    void Update()
-    {
-        
-    }
 
     public bool GameStarted
     {
@@ -61,7 +56,7 @@ public class GameStatus : MonoBehaviour
 
     public void Pause()
     {
-        Time.timeScale = 0.0f;
+        //Time.timeScale = 0.0f;
         gamePaused = true;
     }
 
@@ -71,7 +66,7 @@ public class GameStatus : MonoBehaviour
 
         gameStarted = true;
         gamePaused = false;
-        Time.timeScale = 1.0f;
+        //Time.timeScale = 1.0f;
 
     }
 
@@ -79,7 +74,7 @@ public class GameStatus : MonoBehaviour
     public void Continue()
     {
         gamePaused = false;
-        Time.timeScale = 1.0f;
+        //Time.timeScale = 1.0f;
         
     }
 

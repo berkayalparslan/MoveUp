@@ -37,7 +37,7 @@ public class PlatformMovement : MonoBehaviour
 	void Update ()
     {
 
-        if(gameStatus.gameOver==false && gameStatus.GameStarted==true)
+        if(gameStatus.gameOver == false && gameStatus.GameStarted == true && gameStatus.gamePaused == false )
         {
             MoveInTheRange();
         }

@@ -90,7 +90,7 @@
     <Compile Include="Assets\_Scripts\BallVisibility.cs" />
     <Compile Include="Assets\_Scripts\BlinkingScript.cs" />
     <Compile Include="Assets\_Scripts\ChangeColor.cs" />
-    <Compile Include="Assets\_Scripts\CheckHighScores.cs" />
+    <Compile Include="Assets\_Scripts\CheckHighScore.cs" />
     <Compile Include="Assets\_Scripts\CountdownScript.cs" />
     <Compile Include="Assets\_Scripts\FloorVisibility.cs" />
     <Compile Include="Assets\_Scripts\FollowTheBall.cs" />
@@ -103,7 +103,7 @@
     <Compile Include="Assets\_Scripts\ScoreScript.cs" />
     <Compile Include="Assets\_Scripts\SetPosition.cs" />
     <Compile Include="Assets\_Scripts\SpawnFloors.cs" />
-    <Compile Include="Assets\_Scripts\dbAccess.cs" />
+    <Compile Include="Assets\_Scripts\ScriptXML.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

@@ -5,11 +5,10 @@ public class BallMovement : MonoBehaviour
 {
 
 
-    public SpawnFloors spawnFloors;
+    public SpawnBalloons spawnBalloons;
     public GameStatus gameStatus;
     public ScoreScript scoreScript;
     public FollowTheBall triggerGameover;
-    public FloorVisibility floorVisibility;
 
     public GameObject recentPlatform;
     public GameObject previousPlatform;
@@ -49,26 +48,36 @@ public class BallMovement : MonoBehaviour
 	void FixedUpdate ()
     {
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began 
+        if ( Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began 
             && rb.velocity.normalized.y == 0 && gameStatus.gameOver==false && gameStatus.gameStarted==true 
-            || Input.GetKeyDown(KeyCode.W) && gameStatus.gameStarted == true && rb.velocity.normalized.y == 0 )
+            && gameStatus.gamePaused==false || Input.GetKeyDown(KeyCode.W) && gameStatus.gameStarted == true 
+            && rb.velocity.normalized.y == 0 )
         {
+            rb.AddForce(new Vector2(0, movementDistance), ForceMode2D.Impulse);
 
-            if( IsTouchingPauseButton() == false )
-            {
+            //GONNA UNCOMMENT HERE SOON
+            //if( IsTouchingPauseButton() == false)
+            //{
 
-                rb.AddForce(new Vector2(0, movementDistance), ForceMode2D.Impulse);
+            //    rb.AddForce(new Vector2(0, movementDistance), ForceMode2D.Impulse);
 
-            }
+            //}
+
+            //else
+            //{
+
+            //}
+
 
         }
+
 
     }
 
 
     bool IsTouchingPauseButton()
     {
-        if(Input.GetTouch(0).position.x > Screen.width - 100 && Input.GetTouch(0).position.y > Screen.height -100 )
+        if(Input.GetTouch(0).position.x > Screen.width - 100 && Input.GetTouch(0).position.y > Screen.height -100)
         {
             return true;
         }
@@ -139,11 +148,7 @@ public class BallMovement : MonoBehaviour
 
             transform.SetParent(col.transform);
 
-            if(floorVisibility.isCalled==true)
-            {
-                floorVisibility.GetFloor(previousPlatform.transform.parent.gameObject);
-            }
-            
+
         }
 
     }
@@ -179,15 +184,7 @@ public class BallMovement : MonoBehaviour
 
             ColliderToTrigger(col.gameObject.GetComponent<BoxCollider2D>());
 
-            col.transform.GetComponent<PlatformMovement>().movingSpeed += spawnFloors.speedIncrement;
-
-            if(floorVisibility.isCalled==false)
-            {
-
-                floorVisibility.GetFloor(col.gameObject.transform.parent.gameObject);
-                floorVisibility.isCalled = true;
-
-            }
+            col.transform.GetComponent<PlatformMovement>().movingSpeed += spawnBalloons.speedIncrement;
             
 
         }
@@ -226,9 +223,9 @@ public class BallMovement : MonoBehaviour
     public void TriggerToCollider(BoxCollider2D col)
     {
         col.isTrigger = false;
-        col.offset = new Vector2(0, 0);
+        col.offset = new Vector2(-0.015f, -0.055f);
         //col.size = new Vector2(0.13f, 0.13f);
-        col.size = new Vector2(0.19f, 0.11f);
+        col.size = new Vector2(0.08f, 0.045f);
     }
 
 
@@ -236,9 +233,10 @@ public class BallMovement : MonoBehaviour
     public void ColliderToTrigger(BoxCollider2D col)
     {
         col.isTrigger = true;
-        col.offset = new Vector2(0, 0.15f);
-        col.size = new Vector2(1, 0.16f);
+        col.offset = new Vector2(0, -0.05f);
+        col.size = new Vector2(1, 0.05f);
         Debug.Log("collider to trigger");
+
     }
 
 

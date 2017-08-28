@@ -6,11 +6,13 @@ public class GameStatus : MonoBehaviour
 {
 
     public GameObject ball;
+    public GameObject gameOverMenu;
     
     public BlinkingScript blinkingScript;
-    public SpawnFloors spawnFloors;
+    public SpawnBalloons spawnBalloons;
     public PlatformMovement platformMovement;
     public GameoverTextScript gameoverTextScript;
+    
 
     public bool gameStarted;
     public bool gameOver;
@@ -19,7 +21,7 @@ public class GameStatus : MonoBehaviour
 
     void Awake ()
     {
-        //ball.transform.SetParent(spawnBalconies.balconies[0].transform.GetChild(0).transform);
+        //ball.transform.SetParent(spawnBalloons.balconies[0].transform.GetChild(0).transform);
         Time.timeScale = 0.0f;
         
         gamePaused = true;
@@ -86,9 +88,10 @@ public class GameStatus : MonoBehaviour
         {
 
             gameOver = true;
-            blinkingScript.StartBlinking();
+            gameOverMenu.gameObject.SetActive(true);
+            //blinkingScript.StartBlinking();
             //gameoverTextScript.ShowMenu();
-            
+
         }
 
         else

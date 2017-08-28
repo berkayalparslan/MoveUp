@@ -35,7 +35,8 @@ public class Menu : MonoBehaviour
     void Update ()
     {
         //Debug.Log(Time.timeScale);
-	
+        
+
 	}
 
     public void StartTheGame()

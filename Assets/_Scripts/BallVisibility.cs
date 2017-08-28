@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BallVisibility: MonoBehaviour
+public class BallVisibility : MonoBehaviour
 {
 
     private Camera cam;
@@ -12,15 +12,15 @@ public class BallVisibility: MonoBehaviour
     public Vector3 pos;
 
 
-	void Start ()
+    void Start()
     {
 
         cam = GetComponent<Camera>();
-	
-	}
-	
 
-	void Update ()
+    }
+
+
+    void Update()
     {
 
         if (pos.y < 0)
@@ -32,9 +32,10 @@ public class BallVisibility: MonoBehaviour
 
         }
 
-        pos =cam.WorldToScreenPoint(ball.transform.position);
+        pos = cam.WorldToScreenPoint(ball.transform.position);
 
-	}
+
+    }
 
 
 }

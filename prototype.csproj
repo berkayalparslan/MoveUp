@@ -84,13 +84,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DestroyBalloons.cs" />
     <Compile Include="Assets\_Scripts\BallMovement.cs" />
     <Compile Include="Assets\_Scripts\BallVisibility.cs" />
     <Compile Include="Assets\_Scripts\BlinkingScript.cs" />
     <Compile Include="Assets\_Scripts\ChangeColor.cs" />
     <Compile Include="Assets\_Scripts\CheckHighScore.cs" />
     <Compile Include="Assets\_Scripts\CountdownScript.cs" />
-    <Compile Include="Assets\_Scripts\FloorVisibility.cs" />
     <Compile Include="Assets\_Scripts\FollowTheBall.cs" />
     <Compile Include="Assets\_Scripts\GameStatus.cs" />
     <Compile Include="Assets\_Scripts\GameoverTextScript.cs" />
@@ -100,8 +100,7 @@
     <Compile Include="Assets\_Scripts\PlatformMovement.cs" />
     <Compile Include="Assets\_Scripts\ScoreScript.cs" />
     <Compile Include="Assets\_Scripts\ScriptXML.cs" />
-    <Compile Include="Assets\_Scripts\SetPosition.cs" />
-    <Compile Include="Assets\_Scripts\SpawnFloors.cs" />
+    <Compile Include="Assets\_Scripts\SpawnBalloons.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

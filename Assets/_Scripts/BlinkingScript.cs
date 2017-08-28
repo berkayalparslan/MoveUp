@@ -52,6 +52,7 @@ public class BlinkingScript : MonoBehaviour
 
         if (blinkTriggered == true)
         {
+            image.enabled = true;
 
             if (increase == true && decrease == false)
             {
@@ -69,23 +70,31 @@ public class BlinkingScript : MonoBehaviour
 
             if (counter < 3)
             {
-
-                if (alphaValue > 0.8f)
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
                 {
+                    counter = 3;
+                }
+                else
+                {
+                    if (alphaValue > 0.8f)
+                    {
 
-                    decrease = true;
-                    increase = false;
+                        decrease = true;
+                        increase = false;
 
+                    }
+
+
+                    if (alphaValue < 0.2f)
+                    {
+
+                        increase = true;
+                        decrease = false;
+
+                    }
                 }
 
-
-                if (alphaValue < 0.2f)
-                {
-
-                    increase = true;
-                    decrease = false;
-
-                }
+                    
 
             }
 

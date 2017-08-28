@@ -23,8 +23,8 @@ public class PlatformMovement : MonoBehaviour
 	void Start ()
     {
         gameStatus = GameObject.Find("GameStatus").GetComponent<GameStatus>();
-        leftBorder = -0.3f;
-        rightBorder = 0.3f;
+        leftBorder = -1.7f;
+        rightBorder = 1.7f;
 
         SetRandomBeginDirection();
         SetRandomSpawnPosition();
